@@ -45,13 +45,15 @@ public class XmlPathTest {
                 " </shopping>";
 
 
+        System.out.println(with(XML).get("**.find{ it.name!=''}.name").toString());
         String name = with(XML).get("shopping.category.item[0].name");
-        System.out.println(name);
         assertThat("name diff", name, equalTo("Chocolate2"));
 
         int priceOfChocolate = with(XML).getInt("**.find { it.name == 'Chocolate' }.price");
         System.out.println(priceOfChocolate);
         assertThat("int", priceOfChocolate, is(11));
+
+
 
 
     }
