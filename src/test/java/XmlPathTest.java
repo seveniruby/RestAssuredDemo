@@ -47,6 +47,7 @@ public class XmlPathTest {
 
         String name = with(XML).get("shopping.category.item[0].name");
         System.out.println(name);
+        assertThat("name diff", name, equalTo("Chocolate2"));
 
         int priceOfChocolate = with(XML).getInt("**.find { it.name == 'Chocolate' }.price");
         System.out.println(priceOfChocolate);
