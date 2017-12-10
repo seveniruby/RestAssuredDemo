@@ -3,8 +3,11 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.*;
 import static io.restassured.matcher.RestAssuredMatchers.*;
-import static org.hamcrest.Matchers.*;
+//import static org.hamcrest.Matchers.*;
 import static io.restassured.path.xml.XmlPath.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+
 public class XmlPathTest {
     @BeforeClass
     public static void beforeAll(){
@@ -44,6 +47,11 @@ public class XmlPathTest {
 
         String name = with(XML).get("shopping.category.item[0].name");
         System.out.println(name);
+
+        int priceOfChocolate = with(XML).getInt("**.find { it.name == 'Chocolate' }.price");
+        System.out.println(priceOfChocolate);
+        assertThat("int", priceOfChocolate, is(11));
+
 
     }
 }
